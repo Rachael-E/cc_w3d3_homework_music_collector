@@ -12,8 +12,10 @@ artist3 = Artist.new({ 'name' => 'Ed Sheeran'})
 artist1.save()
 artist2.save()
 artist3.save()
-# Artist.all()
-# p Artist.all()
+# p artist3.name
+# artist3.name = "Lord Huron"
+# # p artist3.name
+# artist3.update()
 
 album1 = Album.new({ 'title' => 'A Kind of Magic', 'genre' => 'Rock', 'artist_id' => artist1.id})
 album1.save()
@@ -24,10 +26,14 @@ album2.save()
 album3 = Album.new({ 'title' => 'Baby One More Time', 'genre' => 'Pop', 'artist_id' => artist2.id})
 album3.save()
 
+p album3.genre
+album3.genre = "90s Pop"
+album3.update()
+
 
 # album2.which_artist()
 # p album2.which_artist() #this tells us the artist of album2.
-artist1.which_albums()
-p artist1.which_albums()
+# artist1.which_albums()
+# p artist1.which_albums()
 # Album.all()
 # p Album.all()

@@ -2,7 +2,8 @@ require('pg')
 require_relative('../db/sql_runner')
 
 class Artist
-  attr_reader :name, :id
+  attr_reader :id
+  attr_accessor :name
 
   def initialize(options)
     @id = options['id'].to_i if options['id']
@@ -23,9 +24,19 @@ class Artist
 
   end
 
+  def update()
+    sql = "UPDATE artists
+    SET name = $1
+    WHERE id = $2
+    ;
+    "
+    values = [@name, @id]
+    SqlRunner.run(sql, values)
+  end
+
   def which_albums() # list all albums by one artist
     sql = "SELECT * FROM albums
-    WHERE artist_id = $1"
+          WHERE artist_id = $1"
     values = [@id]
     album_hashes = SqlRunner.run(sql, values)
     album_objects = album_hashes.map {|album_hash| Album.new(album_hash)}
