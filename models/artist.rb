@@ -23,6 +23,16 @@ class Artist
 
   end
 
+  def which_albums() # list all albums by one artist
+    sql = "SELECT * FROM albums
+    WHERE artist_id = $1"
+    values = [@id]
+    album_hashes = SqlRunner.run(sql, values)
+    album_objects = album_hashes.map {|album_hash| Album.new(album_hash)}
+    return album_objects
+
+  end
+
   def self.all()
     sql = "SELECT * FROM artists"
     artists_hashes = SqlRunner.run(sql)

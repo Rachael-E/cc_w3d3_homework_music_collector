@@ -23,3 +23,11 @@ album2.save()
 
 album3 = Album.new({ 'title' => 'Baby One More Time', 'genre' => 'Pop', 'artist_id' => artist2.id})
 album3.save()
+
+
+# album2.which_artist()
+# p album2.which_artist() #this tells us the artist of album2.
+artist1.which_albums()
+p artist1.which_albums()
+# Album.all()
+# p Album.all()
