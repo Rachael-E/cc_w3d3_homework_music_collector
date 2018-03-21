@@ -26,11 +26,19 @@ album2.save()
 album3 = Album.new({ 'title' => 'Baby One More Time', 'genre' => 'Pop', 'artist_id' => artist2.id})
 album3.save()
 
-p album3.genre
-album3.genre = "90s Pop"
-album3.update()
+album4 = Album.new({ 'title' => 'Hakuna Matata', 'genre' => 'Disney', 'artist_id' => artist3.id})
+album4.save()
+
+p album4
+album4.delete()
 
 
+# p album3.genre
+# album3.genre = "90s Pop"
+# album3.update()
+
+# Album.find(album3.id)
+# p Album.find(album3.id)
 # album2.which_artist()
 # p album2.which_artist() #this tells us the artist of album2.
 # artist1.which_albums()
