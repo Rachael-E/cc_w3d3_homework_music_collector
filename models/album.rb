@@ -2,7 +2,8 @@ require('pg')
 require_relative('../db/sql_runner')
 
 class Album
-  attr_reader :title, :genre, :artist_id
+  attr_reader :id
+  attr_accessor :title, :genre
 
   def initialize(options)
     @id = options['id'].to_i if options['id']
@@ -22,6 +23,12 @@ class Album
   result = SqlRunner.run( sql, values )
 
   @id = result[0]['id'].to_i
+  end
+
+  def self.delete_all()
+    sql = "DELETE FROM albums"
+    SqlRunner.run(sql)
+
   end
 
 

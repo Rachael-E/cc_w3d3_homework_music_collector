@@ -2,7 +2,7 @@ require('pg')
 require_relative('../db/sql_runner')
 
 class Artist
-  attr_reader :name
+  attr_reader :name, :id
 
   def initialize(options)
     @id = options['id'].to_i if options['id']
@@ -21,6 +21,18 @@ class Artist
 
     @id = result[0]['id'].to_i
 
+  end
+
+  def self.all()
+    sql = "SELECT * FROM artists"
+    artists_hashes = SqlRunner.run(sql)
+    artist_objects = artists_hashes.map{|artist| Artist.new(artist)}
+    return artist_objects
+  end
+
+  def self.delete_all()
+    sql = "DELETE FROM artists"
+    SqlRunner.run(sql)
   end
 
 
